@@ -14,10 +14,6 @@ if(NOT Boost_FOUND)
     message(FATAL_ERROR "Boost Not found")
 endif()
 
-#add_definitions(-DBOOST_ASIO_HAS_CO_AWAIT)
-#add_definitions(-DBOOST_ASIO_HAS_STD_COROUTINE)
-#add_definitions(-DBOOST_THREAD_PROVIDES_FUTURE)
-#add_definitions(-DBOOST_THREAD_PROVIDES_FUTURE_CONTINUATION)
 
 
 ADD_LIBRARY(blockchain-lib STATIC src/hash.cpp 
