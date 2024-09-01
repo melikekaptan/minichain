@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package bchain;
+
+message Transaction {
+  optional string signature = 1;
+  optional string data = 2;
+  optional string publicKey = 3;
+  optional int64 id = 4;
+  optional TimeStamp timestamp = 5;
+}
+
+    message TimeStamp {
+    optional int32 year = 1;
+    optional int32 month = 2;
+    optional int32 day = 3;
+    optional int32 hour = 4;
+    optional int32 minute = 5;
+    optional int32 second = 6;
+  }
+
