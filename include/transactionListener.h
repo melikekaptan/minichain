@@ -23,10 +23,7 @@ class TransactionListener{
  
     void handle_receive(const boost::system::error_code & err,
                         const std::size_t bytes);
-            
-   // friend class Miner;
-       
-        
+                  
 
     private:
     boost::asio::io_context _io_context;
