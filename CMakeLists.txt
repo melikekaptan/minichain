@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.4)
 set(CMAKE_C_COMPILER "/usr/bin/clang")
 set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
 
-project(blockchaindev)
+project(minichain)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -23,6 +23,7 @@ ADD_LIBRARY(blockchain-lib STATIC src/hash.cpp
                                   src/network.cpp
                                   src/transactionListener.cpp
                                   src/mine_handler.cpp
+                                  src/block.cpp
                                 )
 
 target_include_directories(blockchain-lib PUBLIC include generated)

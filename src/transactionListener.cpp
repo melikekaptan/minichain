@@ -4,8 +4,7 @@
 
 #include<fmt/format.h>
 
-
-namespace MyChain{
+namespace MiniChain{
 
 #define MODULE_NAME "TRANSACTION_LISTENER"
 

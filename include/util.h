@@ -1,5 +1,5 @@
 
-namespace MyChain{
+namespace MiniChain{
 
 #define transaction_send_port 2602
 #define transaction_listen_port 2602

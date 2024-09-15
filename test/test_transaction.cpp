@@ -55,7 +55,7 @@ std::string publicKey ="-----BEGIN PUBLIC KEY-----\n"\
   }
 
   std::string s("some_data");
-  MyChain::TransactionBuilder t(privateKey, s,  publicKey);
+  MiniChain::TransactionBuilder t(privateKey, s,  publicKey);
   t.representTransaction();
   std::cout<< " transaction size " << sizeof(t._transaction) << " bytes\n";
    std::cout<< " transaction size " << t._transaction.ByteSize() << " bytes\n";
@@ -63,7 +63,7 @@ std::string publicKey ="-----BEGIN PUBLIC KEY-----\n"\
 
 
   std::string some_long_data{"kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"};
-  MyChain::TransactionBuilder t_long(privateKey, some_long_data,  publicKey);
+  MiniChain::TransactionBuilder t_long(privateKey, some_long_data,  publicKey);
   t_long.representTransaction();
   std::cout<< " transaction size " << sizeof(t_long._transaction) << " bytes\n";
   std::cout<< " transaction size " << t_long._transaction.ByteSize() << " bytes\n";

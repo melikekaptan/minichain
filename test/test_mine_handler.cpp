@@ -8,7 +8,7 @@ int main(){
 
     
 try{
-    MyChain::Mine mine{transaction_listen_port};
+    MiniChain::Mine mine{transaction_listen_port};
 
     std::cin.get();
     //using isec = std::chrono::duration<int>;

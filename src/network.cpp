@@ -2,7 +2,7 @@
 
 #include <boost/bind/bind.hpp>
 
-namespace MyChain{
+namespace MiniChain{
 
 #define MODULE_NAME "NETWORK"
 

@@ -2,13 +2,14 @@
 #include"mine_handler.h"
 #include "util.h"
 #include "hash.h"
+#include "block.h"
 
 #include<fmt/format.h>
 
 #define MODULE_NAME "MINE_HANDLER"
 
 
-namespace MyChain{
+namespace MiniChain{
 
 class Mine::Miner{
 
@@ -66,22 +67,21 @@ void Mine::Miner::Perform() {
         while(_is_running){
             fmt::print("[MINER] waits for queue to be filled \n");
             std::unique_lock<std::mutex> ulock(_mine_handler.miner_mutex);
-            _mine_handler._cv.wait(ulock, [this](){ std::cout << "cv waits"<<_is_running;
-                return (!_is_running || _mine_handler.getTransactionCount() >= number_of_transaction_in_block);});
+            _mine_handler._cv.wait(ulock, [this](){ return (!_is_running || _mine_handler.getTransactionCount() >= number_of_transaction_in_block);});
+
             if(!_is_running) {break;}
            // fmt::print("[MINER] queue has enough \n");
             for(int i{}; i < number_of_transaction_in_block; ++i){
                 auto tr = _mine_handler.popTransaction();
-              //  if(!rsa::verifySignature(tr.publickey(), tr.data(), tr.signature().c_str())){
-                //    fmt::print("[{}] signaure cannot verified \n", MODULE_NAME);
-                  //  continue;}
+                  if(!rsa::verifySignature(tr.publickey(), tr.data(), tr.signature().c_str())){
+                    fmt::print("[{}] signaure cannot verified \n", MODULE_NAME);
+                    continue;}
                 
 
             }
             fmt::print("[MINER] queue consumed enough \n");
     }
-       std::cout<< "hello";
-            fmt::print("[MINER] {} \n", _mine_handler._transaction_queue.size());
+       
 }
 
 

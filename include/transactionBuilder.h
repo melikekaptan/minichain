@@ -9,7 +9,7 @@
 #include<fmt/format.h>
 #include <iomanip>
 
-namespace MyChain{
+namespace MiniChain{
 
 class TransactionBuilder{
 

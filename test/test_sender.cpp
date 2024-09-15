@@ -62,11 +62,11 @@ std::string publicKey ="-----BEGIN PUBLIC KEY-----\n"\
   }
 
   std::string s("My secret messagekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkllllllllllllllllllllllllllllllllllllllllllllllllllllll\n");
-  MyChain::TransactionBuilder t(privateKey, s,  publicKey);
+  MiniChain::TransactionBuilder t(privateKey, s,  publicKey);
   t.representTransaction();
 
   ::boost::asio::io_context _io_context;
-  MyChain::Network netw{_io_context, transaction_send_port};
+  MiniChain::Network netw{_io_context, transaction_send_port};
   netw.SendTransaction(t._transaction);
   _io_context.run();
   

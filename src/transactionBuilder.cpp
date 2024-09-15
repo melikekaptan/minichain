@@ -1,6 +1,7 @@
 #include "transactionBuilder.h"
 
-namespace MyChain{
+
+namespace MiniChain{
 
 TransactionBuilder::TransactionBuilder(std::string key, std::string data, std::string publicKey){
 

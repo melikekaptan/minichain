@@ -9,7 +9,7 @@
 #include <iostream>
 #include <thread>
 
-namespace MyChain{
+namespace MiniChain{
 
 class TransactionListener{
 
