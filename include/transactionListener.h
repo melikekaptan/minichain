@@ -3,11 +3,7 @@
 #include "transaction.pb.h"
 
 #include <boost/asio.hpp>
-#include <boost/asio/basic_socket.hpp>
 #include <boost/array.hpp>
-#include <memory>
-#include <iostream>
-#include <thread>
 
 namespace MiniChain{
 

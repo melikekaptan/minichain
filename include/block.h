@@ -1,7 +1,7 @@
 #pragma once
 
 #include "transaction.pb.h"
-#include "block.pb.h"
+//#include "block.pb.h"
 
 class Block {
 

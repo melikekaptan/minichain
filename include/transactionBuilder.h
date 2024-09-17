@@ -4,10 +4,7 @@
 #include "hash.h"
 #include "network.h"
 
-#include<iostream>
-#include<chrono>
-#include<fmt/format.h>
-#include <iomanip>
+#include<string>
 
 namespace MiniChain{
 
@@ -28,8 +25,7 @@ class TransactionBuilder{
   
         bchain::Transaction _transaction;
 
-   
-    //friend Network;
+
 };
 
 }
