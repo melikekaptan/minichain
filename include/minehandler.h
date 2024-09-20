@@ -2,6 +2,7 @@
 
 #include "transaction.pb.h"
 #include "transactionListener.h"
+#include "chain.h"
 
 #include<queue>
 #include<memory>
@@ -38,5 +39,6 @@ private:
     std::unique_ptr<Miner> _miner{nullptr};
     std::condition_variable _cv;
     std::mutex miner_mutex;
+    MiniChain _minichain{};
 };
 }

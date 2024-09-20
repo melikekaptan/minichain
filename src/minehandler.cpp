@@ -1,8 +1,9 @@
 
-#include"mine_handler.h"
+#include"minehandler.h"
 #include "util.h"
 #include "hash.h"
-#include "block.h"
+#include "chain.h"
+#include "blockHelper.h"
 
 #include<fmt/format.h>
 
@@ -21,8 +22,6 @@ public:
                             });
     }
     
-
-
     void Stop(){
         if (_is_running.exchange(false)) {
             fmt::print("[MINER] quitting the mining \n");
@@ -44,13 +43,11 @@ public:
 
     void Perform();
 
-   // ~Miner(){
+    ~Miner(){
     
-     //       Stop();
-   // }
+       Stop();
+    }
  
-
-
     std::function<bchain::Transaction()> _onMine;
     Mine& _mine_handler;
     int _difficulty{};
@@ -69,24 +66,32 @@ void Mine::Miner::Perform() {
             std::unique_lock<std::mutex> ulock(_mine_handler.miner_mutex);
             _mine_handler._cv.wait(ulock, [this](){ return (!_is_running || _mine_handler.getTransactionCount() >= number_of_transaction_in_block);});
 
-            if(!_is_running) {break;}
-           // fmt::print("[MINER] queue has enough \n");
+            if(!_is_running) { break; }
+          
+            auto current_unmined_block = bchain::Block();
+            current_unmined_block.set_previous_block_id(_mine_handler._minichain.GetLastBlockId());
+
             for(int i{}; i < number_of_transaction_in_block; ++i){
                 auto tr = _mine_handler.popTransaction();
                   if(!rsa::verifySignature(tr.publickey(), tr.data(), tr.signature().c_str())){
                     fmt::print("[{}] signaure cannot verified \n", MODULE_NAME);
                     continue;}
+                    try{
+                    
+                         BlockHelper{current_unmined_block}.AddTransaction(std::move(tr));
+                    }
+                    catch(std::exception& e){
+                        std::cerr << e.what();}
                 
 
             }
+            _mine_handler._minichain.AddBlock(std::move(current_unmined_block));
+           //current_unmined_block = {};
             fmt::print("[MINER] queue consumed enough \n");
+            _mine_handler._minichain.PrintStateInfo();
     }
        
 }
-
-
-
-
 
 Mine::Mine(unsigned short transaction_listner_port): tr_listener_port{transaction_listner_port}, _miner{new Miner{*this}} {}
 
@@ -94,6 +99,7 @@ Mine::Mine(unsigned short transaction_listner_port): tr_listener_port{transactio
 
 Mine::~Mine(){
     stop();
+
 }
 
 

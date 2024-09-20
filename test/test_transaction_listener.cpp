@@ -10,7 +10,7 @@ int main() {
 
 
 try{
-   // TransactionListener tr_listener{transaction_listen_port, [](bchain::Transaction){std::cout<<"onReceive called";}};
+    //TransactionListener tr_listener{transaction_listen_port, [](bchain::Transaction){std::cout<<"onReceive called";}};
 
     //tr_listener.run();
     std::cin.get();
